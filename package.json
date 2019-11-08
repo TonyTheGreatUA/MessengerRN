@@ -13,6 +13,7 @@
     "react": "16.9.0",
     "react-native": "0.61.4",
     "react-native-gesture-handler": "^1.5.0",
+    "react-native-image-picker": "^1.1.0",
     "react-native-phone-input": "^0.2.4",
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^1.0.0-alpha.23",

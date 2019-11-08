@@ -1,16 +1,29 @@
 /*eslint-disable*/
-import React from 'react';
-import { View, Text, TextInput, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native';
 import { NavigationState, NavigationScreenProp } from 'react-navigation';
-
+import styles from './CreateProfile.style';
+import ImagePicker from 'react-native-image-picker';
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
 };
 
 const CreateProfileScreen = ({ navigation }: Props) => {
+  const [avatar, useAvatar] = useState(null);
+  const newBack = avatar ? { backgroundImage: uri(avatar) } : null;
+  handleChoosePhoto = () => {
+    const options = {};
+    ImagePicker.launchImageLibrary(options, response => {
+      useAvatar(response.uri);
+    });
+  };
   return (
     <View>
-      <Text>Test</Text>
+      <TouchableOpacity onPress={handleChoosePhoto}>
+        <View style={[styles.imageView, newBack]}>
+          <Text style={styles.imageText}>test</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
