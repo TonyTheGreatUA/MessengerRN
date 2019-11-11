@@ -32,6 +32,7 @@ const ContactScreen = () => {
       <FlatList
         data={dataSource}
         style={styles.container}
+        windowSize={15}
         renderItem={({ item }) => (
           <>
             <TouchableOpacity>

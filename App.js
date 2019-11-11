@@ -1,7 +1,7 @@
 /*eslint-disable*/
 
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 
 import ReduxThunk from 'redux-thunk';
 import { applyMiddleware, createStore } from 'redux';
@@ -23,6 +23,35 @@ import rootReducer from './src/stores/reducers';
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
+const RootTab = createBottomTabNavigator(
+  {
+    ContactScreen: {
+      screen: ContactScreen,
+      showLabel: false,
+      navigationOptions: () => ({
+        tabBarIcon: ({ tintColor }) => <Image source={require('./assets/contacts.png')} />,
+      }),
+    },
+    ChatsScreen: {
+      screen: ChatsScreen,
+      navigationOptions: () => ({
+        tabBarIcon: ({ tintColor }) => <Image source={require('./assets/chat.png')} />,
+      }),
+    },
+    SettingsScreen: {
+      screen: SettingsScreen,
+      navigationOptions: () => ({
+        tabBarIcon: ({ tintColor }) => <Image source={require('./assets/settings.png')} />,
+      }),
+    },
+  },
+  {
+    tabBarOptions: {
+      showLabel: false,
+    },
+  },
+);
+
 const RootStack = createStackNavigator({
   MainScreen: MainScreen,
   RegistrationScreen: {
@@ -39,7 +68,7 @@ const RootStack = createStackNavigator({
     }),
   },
   ContactScreen: {
-    screen: ContactScreen,
+    screen: RootTab,
     navigationOptions: () => ({
       title: `Contacts`,
       headerLeft: null,
@@ -48,14 +77,7 @@ const RootStack = createStackNavigator({
   },
 });
 
-const RootTab = createBottomTabNavigator({
-  ContactScreen: ContactScreen,
-  ChatsScreen: ChatsScreen,
-  SettingsScreen: SettingsScreen,
-});
-
 const AppContainer = createAppContainer(RootStack);
-const TabContainer = createAppContainer(RootTab);
 
 const App: () => React$Node = () => {
   const { isLoading } = useContacts();
