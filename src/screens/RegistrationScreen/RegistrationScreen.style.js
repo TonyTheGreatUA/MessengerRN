@@ -33,7 +33,7 @@ export default StyleSheet.create({
     paddingBottom: '10%',
   },
   formText: {
-    color: '#8c8886',
+    color: '#6982c2',
     fontSize: 22,
     fontFamily: 'arial',
     textAlign: 'center',
