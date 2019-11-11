@@ -29,19 +29,25 @@ const RootTab = createBottomTabNavigator(
       screen: ContactScreen,
       showLabel: false,
       navigationOptions: () => ({
-        tabBarIcon: ({ tintColor }) => <Image source={require('./assets/contacts.png')} />,
+        tabBarIcon: ({ tintColor }) => (
+          <Image style={{ tintColor: '#6982c2' }} source={require('./assets/contacts.png')} />
+        ),
       }),
     },
     ChatsScreen: {
       screen: ChatsScreen,
       navigationOptions: () => ({
-        tabBarIcon: ({ tintColor }) => <Image source={require('./assets/chat.png')} />,
+        tabBarIcon: ({ tintColor }) => (
+          <Image style={{ tintColor: '#6982c2' }} source={require('./assets/chat.png')} />
+        ),
       }),
     },
     SettingsScreen: {
       screen: SettingsScreen,
       navigationOptions: () => ({
-        tabBarIcon: ({ tintColor }) => <Image source={require('./assets/settings.png')} />,
+        tabBarIcon: ({ tintColor }) => (
+          <Image style={{ tintColor: '#6982c2' }} source={require('./assets/settings.png')} />
+        ),
       }),
     },
   },

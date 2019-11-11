@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   Image,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -17,11 +18,11 @@ import useContacts from './useContacts';
 import styles from './ContactScreen.style';
 
 const ContactScreen = () => {
-  const { dataSource, isLoading } = useContacts();
+  const { dataSource, isLoading, searchFilterFunction } = useContacts();
 
   if (isLoading) {
     return (
-      <View>
+      <View style={styles.loaderView}>
         <ActivityIndicator size="large" color="#000" />
       </View>
     );
@@ -29,6 +30,11 @@ const ContactScreen = () => {
 
   return (
     <>
+      <TextInput
+        style={styles.search}
+        placeholder={'Search'}
+        onChangeText={text => searchFilterFunction(text)}
+      />
       <FlatList
         data={dataSource}
         style={styles.container}

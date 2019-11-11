@@ -16,7 +16,19 @@ const useContacts = () => {
         setIsLoading(false);
       });
   }, []);
-  return { dataSource, isLoading };
+
+  const searchFilterFunction = text => {
+    const newData = dataSource.filter(item => {
+      const itemData = `${item.name.first.toUpperCase()} ${item.name.last.toUpperCase()}`;
+      const textData = text.toUpperCase();
+
+      return itemData.indexOf(textData) > -1;
+    });
+
+    setDataSource(newData);
+  };
+
+  return { dataSource, isLoading, searchFilterFunction };
 };
 
 export default useContacts;
