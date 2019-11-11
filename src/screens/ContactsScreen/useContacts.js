@@ -1,3 +1,4 @@
+//@flow
 /*eslint-disable*/
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Image, Text } from 'react-native';
@@ -9,7 +10,7 @@ const useContacts = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://randomuser.me/api/?results=20&inc=name,picture')
+    fetch('https://randomuser.me/api/?results=50&inc=name,picture')
       .then(res => res.json())
       .then(res => {
         setDataSource(res.results);
@@ -17,8 +18,8 @@ const useContacts = () => {
       });
   }, []);
 
-  const searchFilterFunction = text => {
-    const newData = dataSource.filter(item => {
+  const searchFilterFunction = (text: string) => {
+    const newData: any = dataSource.filter(item => {
       const itemData = `${item.name.first.toUpperCase()} ${item.name.last.toUpperCase()}`;
       const textData = text.toUpperCase();
 
