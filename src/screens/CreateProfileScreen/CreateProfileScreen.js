@@ -4,17 +4,19 @@ import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native';
 import { NavigationState, NavigationScreenProp } from 'react-navigation';
 import styles from './CreateProfile.style';
 import ImagePicker from 'react-native-image-picker';
+
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
 };
 
 const CreateProfileScreen = ({ navigation }: Props) => {
-  const [avatar, useAvatar] = useState(null);
+  const [avatar, setAvatar] = useState(null);
+  const [isPhotoAdded, setIsPhotoAdded] = useState(false);
   const newBack = avatar ? { backgroundImage: uri(avatar) } : null;
   handleChoosePhoto = () => {
     const options = {};
     ImagePicker.launchImageLibrary(options, response => {
-      useAvatar(response.uri);
+      setAvatar(response.uri);
     });
   };
   return (
