@@ -1,11 +1,9 @@
 //@flow
-/*eslint-disable*/
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Text,
   View,
-  Button,
   FlatList,
   ActivityIndicator,
   Image,
@@ -64,8 +62,8 @@ const ContactScreen = ({ navigation }: Props) => {
                 </View>
                 <View style={styles.nameView}>
                   <Text style={styles.nameText}>{`${item.name.first} ${item.name.last}`}</Text>
-                  <Text style={{ color: '#6982c2' }}>
-                    {item.dob.age > 30 ? `online` : `offline`}
+                  <Text style={styles.onlineStatus}>
+                    {item.dob.age > 30 ? 'online' : 'offline'}
                   </Text>
                 </View>
               </View>

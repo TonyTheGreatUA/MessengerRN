@@ -1,8 +1,6 @@
 //@flow
-/*eslint-disable*/
-import React, { useState, useEffect, useCallback } from 'react';
-import { View, Image, Text } from 'react-native';
-import styles from './ContactScreen.style';
+
+import { useState, useEffect, useCallback } from 'react';
 
 const useContacts = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,15 +23,14 @@ const useContacts = () => {
     const newData: any = dataSource.filter(
       obj =>
         obj.name.first.toLowerCase().includes(searchInput.toLowerCase()) ||
-        obj.name.last.toLowerCase().includes(searchInput.toLowerCase()) ||
-        obj.login.md5.toLowerCase().includes(searchInput.toLowerCase()),
+        obj.name.last.toLowerCase().includes(searchInput.toLowerCase()),
     );
     setFilteredData(newData);
-  }, [searchInput]);
+  }, [dataSource, searchInput]);
 
-  const searchFilterFunction = () => {
+  const searchFilterFunction = useCallback(() => {
     return (val: string) => setSearchInput(val);
-  };
+  }, []);
 
   return { dataSource, isLoading, searchFilterFunction, filteredData };
 };

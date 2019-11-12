@@ -1,14 +1,8 @@
-/*eslint-disable*/
+//@flow
 import React from 'react';
-import { View, Text, TextInput, Image, TouchableOpacity, Picker } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { NavigationState, NavigationScreenProp } from 'react-navigation';
-import { connect } from 'react-redux';
-import {
-  saveRegistrationData,
-  validateRegistrationData,
-} from '../../stores/registrationFormInfo/actions';
 import styles from './RegistrationScreen.style';
-import PhoneInput from 'react-native-phone-input';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
@@ -22,11 +16,7 @@ const RegistrationScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.registrationView}>
       <Text style={styles.formText}>Input your phone number </Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Phone Number"
-        keyboardType="phone-pad"
-      ></TextInput>
+      <TextInput style={styles.input} placeholder="Phone Number" keyboardType="phone-pad" />
       <TouchableOpacity style={styles.mainButton} onPress={handleNavigation}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>

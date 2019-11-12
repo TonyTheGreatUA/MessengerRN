@@ -1,10 +1,7 @@
-/*eslint-disable*/
-import React, { useState } from 'react';
+//@flow
+import { useState } from 'react';
 
-const useRegistrationScreen = (
-  saveRegistrationData: (phoneNumber: string) => any,
-  validateRegistrationData: (inputData: []) => any,
-) => {
+const useRegistrationScreen = () => {
   const [inputData, setInputData] = useState({
     phoneNumber: '',
   });
@@ -13,11 +10,7 @@ const useRegistrationScreen = (
     return (val: string) => setInputData({ ...inputData, [name]: val });
   };
 
-  const handleButtonSubmit = () => {
-    saveRegistrationData(phoneNumber);
-    validateRegistrationData(inputData);
-  };
-  return { handleTextChanged, handleButtonSubmit, inputData };
+  return { handleTextChanged, inputData };
 };
 
 export default useRegistrationScreen;

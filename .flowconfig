@@ -1,6 +1,7 @@
 [ignore]
 ; We fork some components by platform
 .*/*[.]android.js
+.*/node_modules/react_native/react-native-image-picker/*
 
 
 ; Ignore "BUCK" generated dirs
@@ -18,6 +19,7 @@ node_modules/warning/.*
 
 [untyped]
 .*/node_modules/@react-native-community/cli/.*/.*
+.*/node_modules/react-native
 
 [include]
 

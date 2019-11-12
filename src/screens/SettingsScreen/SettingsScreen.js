@@ -1,5 +1,5 @@
-/*eslint-disable*/
-import React, { Component } from 'react';
+//@flow
+import React from 'react';
 import { Text, View, Image } from 'react-native';
 import styles from './SettingsScreen.style';
 

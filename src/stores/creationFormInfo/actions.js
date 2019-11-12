@@ -1,5 +1,5 @@
 //@flow
-/*eslint-disable*/
+
 import {
   CREATION_FORM_STATUS_FAILURE,
   CREATION_FORM_STATUS_REQUEST,

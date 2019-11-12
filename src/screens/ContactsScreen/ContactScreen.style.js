@@ -54,4 +54,5 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: '#D3D3D3',
   },
+  onlineStatus: { color: '#6982c2' },
 });

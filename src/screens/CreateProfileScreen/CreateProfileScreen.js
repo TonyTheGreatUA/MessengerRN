@@ -1,29 +1,20 @@
-/*eslint-disable*/
-import React, { useState, useEffect } from 'react';
+//@flow
+import React from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native';
 import { NavigationState, NavigationScreenProp } from 'react-navigation';
 import styles from './CreateProfile.style';
-import ImagePicker from 'react-native-image-picker';
+import useProfileCreation from './useProfileCreation';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
 };
 
 const CreateProfileScreen = ({ navigation }: Props) => {
-  const [avatar, setAvatar] = useState(null);
-  const [isPhotoAdded, setIsPhotoAdded] = useState(false);
-
   const handleNavigation = () => {
-    navigation.navigate('ContactScreen');
+    navigation.navigate('RootTab');
   };
 
-  const handleChoosePhoto = () => {
-    const options = {};
-    ImagePicker.launchImageLibrary(options, response => {
-      setAvatar(response.uri);
-      setIsPhotoAdded(true);
-    });
-  };
+  const { isPhotoAdded, handleChoosePhoto } = useProfileCreation();
 
   return (
     <View style={styles.mainView}>
@@ -32,7 +23,7 @@ const CreateProfileScreen = ({ navigation }: Props) => {
         <View style={styles.leftItem}>
           <TouchableOpacity onPress={handleChoosePhoto}>
             {isPhotoAdded ? (
-              <View style={[styles.imageView, { backgroundImage: uri(avatar) }]}></View>
+              <View style={styles.imageView} />
             ) : (
               <View style={styles.imageView}>
                 <Image source={require('../../../assets/camera.png')} />

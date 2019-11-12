@@ -1,5 +1,3 @@
-//@flow
-
 import { RequestStatus } from '../../utils/RequestStatus';
 
 import {
