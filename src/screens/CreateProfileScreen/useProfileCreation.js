@@ -3,11 +3,13 @@ import { useState, useCallback } from 'react';
 import ImagePicker from 'react-native-image-picker';
 
 const useProfileCreation = () => {
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState('');
   const [isPhotoAdded, setIsPhotoAdded] = useState(false);
 
   const handleChoosePhoto = useCallback(() => {
-    const options = {};
+    const options = {
+      noData: true,
+    };
     ImagePicker.launchImageLibrary(options, response => {
       setAvatar(response.uri);
       setIsPhotoAdded(true);

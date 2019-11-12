@@ -14,7 +14,7 @@ const CreateProfileScreen = ({ navigation }: Props) => {
     navigation.navigate('RootTab');
   };
 
-  const { isPhotoAdded, handleChoosePhoto } = useProfileCreation();
+  const { isPhotoAdded, handleChoosePhoto, avatar } = useProfileCreation();
 
   return (
     <View style={styles.mainView}>
@@ -23,7 +23,9 @@ const CreateProfileScreen = ({ navigation }: Props) => {
         <View style={styles.leftItem}>
           <TouchableOpacity onPress={handleChoosePhoto}>
             {isPhotoAdded ? (
-              <View style={styles.imageView} />
+              <View style={styles.imageView}>
+                <Image source={{ uri: avatar }} />
+              </View>
             ) : (
               <View style={styles.imageView}>
                 <Image source={require('../../../assets/camera.png')} />

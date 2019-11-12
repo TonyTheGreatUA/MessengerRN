@@ -1,10 +1,8 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { Image } from 'react-native';
 import ContactScreen from '../../screens/ContactsScreen';
 import ChatsScreen from '../../screens/ChatsScreen';
 import SettingsScreen from '../../screens/SettingsScreen';
-
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 const RootTab = createBottomTabNavigator(
@@ -15,7 +13,7 @@ const RootTab = createBottomTabNavigator(
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
           <Image
-            style={{ tintColor: '#6982c2' }}
+            style={{ tintColor: tintColor }}
             source={require('../../../assets/contacts.png')}
           />
         ),
@@ -25,7 +23,7 @@ const RootTab = createBottomTabNavigator(
       screen: ChatsScreen,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
-          <Image style={{ tintColor: '#6982c2' }} source={require('../../../assets/chat.png')} />
+          <Image style={{ tintColor: tintColor }} source={require('../../../assets/chat.png')} />
         ),
       }),
     },
@@ -34,7 +32,7 @@ const RootTab = createBottomTabNavigator(
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
           <Image
-            style={{ tintColor: '#6982c2' }}
+            style={{ tintColor: tintColor }}
             source={require('../../../assets/settings.png')}
           />
         ),
@@ -44,6 +42,7 @@ const RootTab = createBottomTabNavigator(
   {
     tabBarOptions: {
       showLabel: false,
+      activeTintColor: '#6982c2',
     },
   },
 );
