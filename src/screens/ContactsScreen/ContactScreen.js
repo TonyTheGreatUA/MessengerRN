@@ -12,13 +12,25 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { NavigationState, NavigationScreenProp } from 'react-navigation';
 import useContacts from './useContacts';
 import styles from './ContactScreen.style';
 
-const ContactScreen = () => {
-  const { dataSource, isLoading, searchFilterFunction } = useContacts();
+type Props = {
+  navigation: NavigationScreenProp<NavigationState>,
+};
+
+const ContactScreen = ({ navigation }: Props) => {
+  const { isLoading, searchFilterFunction, filteredData } = useContacts();
+
+  const openChatPage = user => {
+    return navigation.navigate('ChatScreen', {
+      name: user.name.first,
+      surname: user.name.last,
+      image: user.picture.thumbnail,
+      age: user.dob.age,
+    });
+  };
 
   if (isLoading) {
     return (
@@ -33,22 +45,28 @@ const ContactScreen = () => {
       <TextInput
         style={styles.search}
         placeholder={'Search'}
-        onChangeText={text => searchFilterFunction(text)}
+        onChangeText={searchFilterFunction()}
       />
       <FlatList
-        data={dataSource}
+        data={filteredData}
         style={styles.container}
         windowSize={15}
         renderItem={({ item }) => (
           <>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                openChatPage(item);
+              }}
+            >
               <View style={styles.userCard}>
                 <View style={styles.photoView}>
                   <Image style={styles.userPhoto} source={{ uri: item.picture.thumbnail }} />
                 </View>
                 <View style={styles.nameView}>
                   <Text style={styles.nameText}>{`${item.name.first} ${item.name.last}`}</Text>
-                  <Text style={{ color: '#6982c2' }}>online</Text>
+                  <Text style={{ color: '#6982c2' }}>
+                    {item.dob.age > 30 ? `online` : `offline`}
+                  </Text>
                 </View>
               </View>
             </TouchableOpacity>

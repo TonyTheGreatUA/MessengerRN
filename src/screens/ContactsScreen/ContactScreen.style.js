@@ -17,7 +17,8 @@ export default StyleSheet.create({
     borderRadius: 50,
   },
   nameText: {
-    fontSize: 28,
+    paddingTop: '1%',
+    fontSize: 22,
     fontFamily: 'arial',
     color: '#8c8886',
   },

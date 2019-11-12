@@ -1,16 +1,17 @@
-/*eslint-disable*/
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     height: '100%',
+    flexDirection: 'column',
+    flex: 1,
   },
   userCard: {
     width: '100%',
     height: 'auto',
     flexDirection: 'row',
     paddingBottom: '1%',
+    paddingTop: '2%',
   },
   userPhoto: {
     width: 50,
@@ -46,13 +47,27 @@ export default StyleSheet.create({
     backgroundColor: '#FFF',
     fontSize: 24,
     color: '#8c8886',
-    paddingLeft: 15,
-    marginLeft: 35,
-    marginRight: 35,
-    marginTop: 5,
-    marginBottom: 5,
+    paddingLeft: '10%',
+    paddingRight: '10%',
+    paddingTop: '1%',
+    paddingBottom: '1%',
+    marginLeft: 20,
+    marginRight: 20,
+
     borderRadius: 30,
     borderWidth: 1,
     borderColor: '#D3D3D3',
+  },
+  lowerBlock: {},
+  sendMessage: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  send: { justifyContent: 'flex-end' },
+  sendButton: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    backgroundColor: '#6982c2',
   },
 });

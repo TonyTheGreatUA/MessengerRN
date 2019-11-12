@@ -1,27 +1,58 @@
 /*eslint-disable*/
 import React, { Component } from 'react';
-import { Text, View, TextInput, FlatList } from 'react-native';
+import { Text, View, TextInput, FlatList, TouchableOpacity, Image } from 'react-native';
 import styles from './ChatsScreen.style';
+import { NavigationState, NavigationScreenProp } from 'react-navigation';
+import useContacts from '../ContactsScreen/useContacts';
 
-const ChatsScreen = () => {
-  const searchFilterFunction = (text: string) => {
-    const newData: any = dataSource.filter(item => {
-      const itemData = `${item.name.first.toUpperCase()} ${item.name.last.toUpperCase()}`;
-      const textData = text.toUpperCase();
+type Props = {
+  navigation: NavigationScreenProp<NavigationState>,
+};
 
-      return itemData.indexOf(textData) > -1;
+const ChatsScreen = ({ navigation }: Props) => {
+  const { filteredData, searchFilterFunction } = useContacts();
+
+  const openChatPage = user => {
+    return navigation.navigate('ChatScreen', {
+      name: user.name.first,
+      surname: user.name.last,
+      image: user.picture.thumbnail,
+      age: user.dob.age,
     });
-
-    setDataSource(newData);
   };
   return (
     <>
       <TextInput
         style={styles.search}
         placeholder={'Search'}
-        onChangeText={text => searchFilterFunction(text)}
+        onChangeText={searchFilterFunction()}
       />
-      <FlatList />
+      <FlatList
+        data={filteredData}
+        style={styles.container}
+        windowSize={15}
+        renderItem={({ item }) => (
+          <>
+            <TouchableOpacity
+              onPress={() => {
+                openChatPage(item);
+              }}
+            >
+              <View style={styles.userCard}>
+                <View style={styles.photoView}>
+                  <Image style={styles.userPhoto} source={{ uri: item.picture.thumbnail }} />
+                </View>
+                <View style={styles.nameView}>
+                  <Text style={styles.nameText}>{`${item.name.first} ${item.name.last}`}</Text>
+                  <Text style={{ color: '#6982c2' }}>{item.login.md5}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+            <View style={styles.separator} />
+          </>
+        )}
+        keyExtractor={(item, id) => `${id}`}
+      />
     </>
   );
 };

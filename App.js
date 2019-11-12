@@ -17,7 +17,7 @@ import CreateProfileScreen from './src/screens/CreateProfileScreen';
 import ContactScreen from './src/screens/ContactsScreen';
 import ChatsScreen from './src/screens/ChatsScreen/ChatsScreen';
 import SettingsScreen from './src/screens/SettingsScreen/SettingsScreen';
-
+import ChatScreen from './src/screens/ChatScreen/ChatScreen';
 import useContacts from './src/screens/ContactsScreen/useContacts';
 import rootReducer from './src/stores/reducers';
 
@@ -79,6 +79,12 @@ const RootStack = createStackNavigator({
       title: `Contacts`,
       headerLeft: null,
       gesturesEnabled: false,
+    }),
+  },
+  ChatScreen: {
+    screen: ChatScreen,
+    navigationOptions: () => ({
+      title: `Chat`,
     }),
   },
 });
