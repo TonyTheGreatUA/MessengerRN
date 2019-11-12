@@ -70,4 +70,7 @@ export default StyleSheet.create({
     backgroundColor: '#6982c2',
     resizeMode: 'center',
   },
+  onlineText: {
+    color: '#6982c2',
+  },
 });

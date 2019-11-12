@@ -1,5 +1,5 @@
-/*eslint-disable*/
-import React, { Component } from 'react';
+//@flow
+import React from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { NavigationState, NavigationScreenProp } from 'react-navigation';
 import styles from './ChatScreen.style';
@@ -22,7 +22,7 @@ const ChatScreen = ({ navigation }: Props) => {
         </View>
         <View style={styles.nameView}>
           <Text style={styles.nameText}>{`${name} ${surname}`}</Text>
-          <Text style={{ color: '#6982c2' }}>{online > 30 ? `online` : `offline`}</Text>
+          <Text style={styles.onlineText}>{online > 30 ? 'online' : 'offline'}</Text>
         </View>
       </View>
       <View style={styles.separator} />
