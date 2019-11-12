@@ -53,7 +53,6 @@ export default StyleSheet.create({
     paddingBottom: '1%',
     marginLeft: 20,
     marginRight: 20,
-
     borderRadius: 30,
     borderWidth: 1,
     borderColor: '#D3D3D3',
@@ -69,5 +68,6 @@ export default StyleSheet.create({
     width: 40,
     borderRadius: 20,
     backgroundColor: '#6982c2',
+    resizeMode: 'center',
   },
 });

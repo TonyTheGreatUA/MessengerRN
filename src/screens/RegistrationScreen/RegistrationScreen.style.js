@@ -56,4 +56,9 @@ export default StyleSheet.create({
     fontSize: 26,
     color: '#fff',
   },
+  imageSize: {
+    alignItems: 'center',
+    width: '100%',
+    height: '40%',
+  },
 });

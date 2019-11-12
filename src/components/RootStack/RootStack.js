@@ -35,6 +35,7 @@ const RootStack = createStackNavigator({
     screen: ChatScreen,
     navigationOptions: () => ({
       title: 'Chat',
+      headerLeft: null,
     }),
   },
   RootTab: {

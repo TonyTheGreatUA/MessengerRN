@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   mainView: {
-    paddingTop: '10%',
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',

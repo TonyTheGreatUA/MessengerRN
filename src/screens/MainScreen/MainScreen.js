@@ -14,7 +14,7 @@ const MainScreen = ({ navigation }: Props) => {
   };
   return (
     <View style={styles.mainView}>
-      <Image style={styles.imageSize} source={require('../../../assets/mainScreenPic.jpg')} />
+      <Image style={styles.imageSize} source={require('../../../assets/main.png')} />
       <Text style={styles.mainText}>Welcome</Text>
       <Text style={styles.descrText}>The world's fastest messaging app.</Text>
       <TouchableOpacity style={styles.mainButton} onPress={handleNavigation}>

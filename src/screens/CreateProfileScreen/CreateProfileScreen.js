@@ -18,6 +18,7 @@ const CreateProfileScreen = ({ navigation }: Props) => {
 
   return (
     <View style={styles.mainView}>
+      <Image style={styles.imageSize} source={require('../../../assets/personalinfo.png')} />
       <Text style={styles.descrText}>Set up your photo, first and last name</Text>
       <View style={styles.registrationView}>
         <View style={styles.leftItem}>
