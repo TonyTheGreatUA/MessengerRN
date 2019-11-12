@@ -8,19 +8,11 @@ import {
 } from './types';
 import { CallAPIService } from '../../services/callAPIService';
 
-export const saveRegistrationData = (
-  phoneNumber: string,
-  photo: string,
-  name: string,
-  surname: string,
-) => {
+export const saveRegistrationData = (phoneNumber: string) => {
   return {
     type: SAVE_REGISTRATION_FORM_DATA,
     payload: {
       phoneNumber,
-      photo,
-      name,
-      surname,
     },
   };
 };

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { useState } from 'react';
 import ImagePicker from 'react-native-image-picker';
 
@@ -12,6 +13,7 @@ const useProfileCreation = () => {
       setIsPhotoAdded(true);
     });
   };
+
   return { isPhotoAdded, avatar, handleChoosePhoto };
 };
 

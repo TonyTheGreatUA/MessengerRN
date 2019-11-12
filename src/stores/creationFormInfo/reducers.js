@@ -3,14 +3,13 @@
 import { RequestStatus } from '../../utils/RequestStatus';
 
 import {
-  REGISTRATION_FORM_STATUS_SUCCESS,
-  REGISTRATION_FORM_STATUS_FAILURE,
-  REGISTRATION_FORM_STATUS_REQUEST,
-  SAVE_REGISTRATION_FORM_DATA,
+  CREATION_FORM_STATUS_FAILURE,
+  CREATION_FORM_STATUS_REQUEST,
+  CREATION_FORM_STATUS_SUCCESS,
+  SAVE_CREATION_FORM_DATA,
 } from './types';
 
 const defaultState = {
-  phoneNumber: '',
   photo: '',
   name: '',
   surname: '',
@@ -18,32 +17,36 @@ const defaultState = {
 
 export const registrationFormInfoReducer = (
   state: {
-    phoneNumber: string,
+    photo: string,
+    name: string,
+    surname: string,
   } = defaultState,
   action: {
     type: string,
     payload: {
-      phoneNumber: string,
+      photo: string,
+      name: string,
+      surname: string,
     },
   },
 ) => {
   switch (action.type) {
-    case REGISTRATION_FORM_STATUS_REQUEST:
+    case CREATION_FORM_STATUS_REQUEST:
       return {
         ...state,
         requestStatus: RequestStatus.Request,
       };
-    case REGISTRATION_FORM_STATUS_SUCCESS:
+    case CREATION_FORM_STATUS_SUCCESS:
       return {
         ...state,
         requestStatus: RequestStatus.Success,
       };
-    case REGISTRATION_FORM_STATUS_FAILURE:
+    case CREATION_FORM_STATUS_FAILURE:
       return {
         ...state,
         requestStatus: RequestStatus.Failure,
       };
-    case SAVE_REGISTRATION_FORM_DATA:
+    case SAVE_CREATION_FORM_DATA:
       return {
         ...state,
         ...action.payload,

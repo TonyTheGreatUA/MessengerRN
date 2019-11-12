@@ -2,6 +2,11 @@
 import React from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity, Picker } from 'react-native';
 import { NavigationState, NavigationScreenProp } from 'react-navigation';
+import { connect } from 'react-redux';
+import {
+  saveRegistrationData,
+  validateRegistrationData,
+} from '../../stores/registrationFormInfo/actions';
 import styles from './RegistrationScreen.style';
 import PhoneInput from 'react-native-phone-input';
 

@@ -9,6 +9,7 @@ const useContacts = () => {
   const [dataSource, setDataSource] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+
   useEffect(() => {
     setIsLoading(true);
     fetch('https://randomuser.me/api/?results=50&inc=name,picture,dob,login')
