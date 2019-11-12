@@ -1,14 +1,17 @@
 //@flow
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 const useRegistrationScreen = () => {
   const [inputData, setInputData] = useState({
     phoneNumber: '',
   });
 
-  const handleTextChanged = (name: string) => {
-    return (val: string) => setInputData({ ...inputData, [name]: val });
-  };
+  const handleTextChanged = useCallback(
+    (name: string) => {
+      return (val: string) => setInputData({ ...inputData, [name]: val });
+    },
+    [inputData],
+  );
 
   return { handleTextChanged, inputData };
 };

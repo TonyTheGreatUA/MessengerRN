@@ -1,5 +1,5 @@
-/*eslint-disable*/
-import React, { Component } from 'react';
+//@flow
+import React from 'react';
 import { Text, View, TextInput, FlatList, TouchableOpacity, Image } from 'react-native';
 import styles from './ChatsScreen.style';
 import { NavigationState, NavigationScreenProp } from 'react-navigation';
@@ -44,7 +44,7 @@ const ChatsScreen = ({ navigation }: Props) => {
                 </View>
                 <View style={styles.nameView}>
                   <Text style={styles.nameText}>{`${item.name.first} ${item.name.last}`}</Text>
-                  <Text style={{ color: '#6982c2' }}>{item.login.md5}</Text>
+                  <Text style={styles.messageText}>{item.login.md5}</Text>
                 </View>
               </View>
             </TouchableOpacity>
