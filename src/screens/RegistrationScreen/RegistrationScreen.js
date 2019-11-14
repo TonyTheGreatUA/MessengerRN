@@ -14,7 +14,7 @@ const RegistrationScreen = ({ navigation }: Props) => {
   const hasError = isError ? styles.inputError : styles.inputDefault;
 
   const handleNavigation = () => {
-    if (inputData.phoneNumber.length > 3) {
+    if (inputData.phoneNumber.length > 9 && inputData.phoneNumber.length < 14) {
       return navigation.navigate('CreateProfileScreen');
     }
   };

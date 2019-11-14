@@ -4,7 +4,6 @@ import { Text, View, TextInput, FlatList, TouchableOpacity, Image } from 'react-
 import styles from './ChatsScreen.style';
 import { NavigationState, NavigationScreenProp } from 'react-navigation';
 import useContacts from '../ContactsScreen/useContacts';
-import useChatScreen from '../ChatScreen/useChatScreen';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,

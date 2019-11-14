@@ -6,17 +6,17 @@ const callServerMockCreation = (items: boolean): Promise<any> => {
     const response = () => {
       err ? reject(err) : resolve();
     };
-    setTimeout(response, 2000);
+    setTimeout(response, 200);
   });
 };
 
-const onServerValidation = (items: boolean) => {
+const onServerValidationC = (items: boolean) => {
   return callServerMockCreation(items);
 };
 
 class CreationAPIService {
-  callServerValidation(items: boolean) {
-    return onServerValidation(items);
+  callServerValidationC(items: boolean) {
+    return onServerValidationC(items);
   }
 }
 

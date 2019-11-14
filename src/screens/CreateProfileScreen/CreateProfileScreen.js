@@ -16,14 +16,20 @@ const CreateProfileScreen = ({ navigation }: Props) => {
     avatar,
     handleTextChanged,
     handleSubmit,
+    isErrorC,
+    inputData,
   } = useProfileCreation();
 
+  const hasError = isErrorC ? styles.inputError : styles.inputDefault;
+
   const handleNavigation = () => {
-    navigation.navigate('RootTab');
+    handleSubmit();
+    if (inputData.firstName.length > 3 && inputData.lastName.length > 3) {
+      return navigation.navigate('RootTab');
+    }
   };
   const onButtonClick = () => {
     handleNavigation();
-    handleSubmit();
   };
 
   return (
@@ -46,18 +52,18 @@ const CreateProfileScreen = ({ navigation }: Props) => {
         </View>
         <View style={styles.rightItem}>
           <TextInput
-            style={styles.input}
-            onChangeText={handleTextChanged('name')}
+            style={[styles.input, hasError]}
+            onChangeText={handleTextChanged('firstName')}
             placeholder="Name"
           />
           <TextInput
-            style={styles.input}
-            onChangeText={handleTextChanged('surname')}
+            style={[styles.input, hasError]}
+            onChangeText={handleTextChanged('lastName')}
             placeholder="Surname"
           />
         </View>
       </View>
-      <TouchableOpacity onPress={onButtonClick} style={styles.mainButton}>
+      <TouchableOpacity disabled={isErrorC} onPress={onButtonClick} style={styles.mainButton}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>

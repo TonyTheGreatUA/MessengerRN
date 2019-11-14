@@ -18,7 +18,7 @@ const useContacts = (messageData: any) => {
         setIsLoading(false);
       });
   }, [messageData]);
-  const addMessages = () => {};
+
   useEffect(() => {
     const newData: any = dataSource.filter(
       obj =>

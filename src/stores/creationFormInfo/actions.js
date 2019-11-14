@@ -22,7 +22,7 @@ export const validateCreationData = (items: any) => (dispatch: any) => {
   dispatch({ type: CREATION_FORM_STATUS_REQUEST });
 
   new CreationAPIService()
-    .callServerValidation(items)
+    .callServerValidationC(items)
     .then(data => {
       dispatch({ type: CREATION_FORM_STATUS_SUCCESS, payload: data });
     })

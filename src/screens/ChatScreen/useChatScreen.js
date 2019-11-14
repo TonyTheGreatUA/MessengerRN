@@ -2,8 +2,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
-const replyMsg = ['Hello', 'Good Day', 'Cool', 'Awesome'];
-
 const useChatScreen = () => {
   const [messageData, setMessageData] = useState([]);
   const [textInput, setTextInput] = useState('');

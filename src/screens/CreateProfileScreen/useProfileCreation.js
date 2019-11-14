@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 //@flow
 import { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,15 +8,15 @@ import { saveCreationData, validateCreationData } from '../../stores/creationFor
 
 const useProfileCreation = () => {
   const [inputData, setInputData] = useState({
-    name: '',
-    surname: '',
+    firstName: '',
+    lastName: '',
   });
   const [avatar, setAvatar] = useState('');
   const [isPhotoAdded, setIsPhotoAdded] = useState(false);
 
   const dispatch = useDispatch();
-  const isError = useSelector(
-    state => state.registrationFormInfo.requestStatus === RequestStatus.Failure,
+  const isErrorC = useSelector(
+    state => state.creationFormInfo.requestStatus === RequestStatus.Failure,
   );
 
   const handleChoosePhoto = useCallback(() => {
@@ -28,23 +29,28 @@ const useProfileCreation = () => {
     });
   }, []);
 
-  const handleTextChanged = useCallback(
-    (name: string) => {
-      return (val: string) => setInputData({ ...inputData, [name]: val });
-    },
-    [inputData],
-  );
-  const handleRegistration = useCallback(() => {
-    dispatch(saveCreationData(inputData.name, inputData.surname));
-  }, [dispatch, inputData.name, inputData.surname]);
+  const handleTextChanged = (name: string) => {
+    return (val: string) => setInputData({ ...inputData, [name]: val });
+  };
+  const handleRegistration = () => {
+    dispatch(saveCreationData(inputData.firstName, inputData.lastName));
+  };
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = () => {
     handleRegistration();
 
     dispatch(validateCreationData(inputData));
-  }, [dispatch, handleRegistration, inputData]);
+  };
 
-  return { isPhotoAdded, avatar, handleChoosePhoto, handleSubmit, handleTextChanged };
+  return {
+    isPhotoAdded,
+    avatar,
+    handleChoosePhoto,
+    handleSubmit,
+    handleTextChanged,
+    isErrorC,
+    inputData,
+  };
 };
 
 export default useProfileCreation;

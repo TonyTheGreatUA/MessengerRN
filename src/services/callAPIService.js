@@ -6,7 +6,7 @@ const callServerMock = (items: boolean): Promise<any> => {
     const response = () => {
       err ? reject(err) : resolve();
     };
-    setTimeout(response, 2000);
+    setTimeout(response, 200);
   });
 };
 

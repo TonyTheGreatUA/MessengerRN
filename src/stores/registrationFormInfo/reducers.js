@@ -11,9 +11,6 @@ import {
 
 const defaultState = {
   phoneNumber: '',
-  photo: '',
-  name: '',
-  surname: '',
 };
 
 export const registrationFormInfoReducer = (
