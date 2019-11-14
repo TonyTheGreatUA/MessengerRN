@@ -1,5 +1,4 @@
 //@flow
-/*eslint-disable*/
 import { combineReducers } from 'redux';
 import { registrationFormInfoReducer } from './registrationFormInfo/reducers';
 import { creationFormInfoReducer } from './creationFormInfo/reducers';

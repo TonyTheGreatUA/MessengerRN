@@ -1,5 +1,5 @@
 //@flow
-/*eslint-disable*/
+
 import {
   SAVE_REGISTRATION_FORM_DATA,
   REGISTRATION_FORM_STATUS_FAILURE,

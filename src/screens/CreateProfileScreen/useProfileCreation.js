@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 //@flow
 import { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
