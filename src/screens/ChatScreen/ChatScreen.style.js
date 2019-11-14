@@ -57,7 +57,9 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: '#D3D3D3',
   },
-  lowerBlock: {},
+  lowerBlock: {
+    paddingBottom: 20,
+  },
   sendMessage: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -72,5 +74,32 @@ export default StyleSheet.create({
   },
   onlineText: {
     color: '#6982c2',
+  },
+  messageView: {
+    flex: 1,
+    width: '100%',
+  },
+  messageText: {
+    backgroundColor: '#6982c2',
+    borderWidth: 1,
+    borderColor: '#FFF',
+    width: '50%',
+    borderRadius: 20,
+    margin: 5,
+    padding: 8,
+  },
+  ymessageText: {
+    flex: 1,
+    backgroundColor: '#6982c2',
+    borderWidth: 1,
+    borderColor: '#FFF',
+    marginLeft: 205,
+    width: '50%',
+    borderRadius: 20,
+    margin: 5,
+    padding: 8,
+  },
+  senderName: {
+    color: '#FFF',
   },
 });

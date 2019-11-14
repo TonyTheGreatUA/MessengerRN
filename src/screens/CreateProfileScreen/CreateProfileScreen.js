@@ -10,11 +10,21 @@ type Props = {
 };
 
 const CreateProfileScreen = ({ navigation }: Props) => {
+  const {
+    isPhotoAdded,
+    handleChoosePhoto,
+    avatar,
+    handleTextChanged,
+    handleSubmit,
+  } = useProfileCreation();
+
   const handleNavigation = () => {
     navigation.navigate('RootTab');
   };
-
-  const { isPhotoAdded, handleChoosePhoto, avatar } = useProfileCreation();
+  const onButtonClick = () => {
+    handleNavigation();
+    handleSubmit();
+  };
 
   return (
     <View style={styles.mainView}>
@@ -35,11 +45,19 @@ const CreateProfileScreen = ({ navigation }: Props) => {
           </TouchableOpacity>
         </View>
         <View style={styles.rightItem}>
-          <TextInput style={styles.input} placeholder="Name" />
-          <TextInput style={styles.input} placeholder="Surname" />
+          <TextInput
+            style={styles.input}
+            onChangeText={handleTextChanged('name')}
+            placeholder="Name"
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={handleTextChanged('surname')}
+            placeholder="Surname"
+          />
         </View>
       </View>
-      <TouchableOpacity style={styles.mainButton} onPress={handleNavigation}>
+      <TouchableOpacity onPress={onButtonClick} style={styles.mainButton}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>

@@ -1,8 +1,8 @@
-import { validationService } from './validationService';
+import { validationCreation } from './validationService';
 
-const callServerMock = (items: boolean): Promise<any> => {
+const callServerMockCreation = (items: boolean): Promise<any> => {
   return new Promise((resolve, reject) => {
-    const err = validationService(items);
+    const err = validationCreation(items);
     const response = () => {
       err ? reject(err) : resolve();
     };
@@ -11,13 +11,13 @@ const callServerMock = (items: boolean): Promise<any> => {
 };
 
 const onServerValidation = (items: boolean) => {
-  return callServerMock(items);
+  return callServerMockCreation(items);
 };
 
-class CallAPIService {
+class CreationAPIService {
   callServerValidation(items: boolean) {
     return onServerValidation(items);
   }
 }
 
-export { CallAPIService };
+export { CreationAPIService };

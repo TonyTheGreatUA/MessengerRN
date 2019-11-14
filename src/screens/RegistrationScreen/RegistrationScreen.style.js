@@ -61,4 +61,10 @@ export default StyleSheet.create({
     width: '100%',
     height: '40%',
   },
+  inputError: {
+    borderBottomColor: '#FF0000',
+  },
+  inputDefault: {
+    borderBottomColor: '#6982c2',
+  },
 });

@@ -8,21 +8,18 @@ import {
 } from './types';
 
 const defaultState = {
-  photo: '',
   name: '',
   surname: '',
 };
 
-export const registrationFormInfoReducer = (
+export const creationFormInfoReducer = (
   state: {
-    photo: string,
     name: string,
     surname: string,
   } = defaultState,
   action: {
     type: string,
     payload: {
-      photo: string,
       name: string,
       surname: string,
     },

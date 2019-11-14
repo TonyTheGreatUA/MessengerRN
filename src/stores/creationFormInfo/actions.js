@@ -6,23 +6,22 @@ import {
   CREATION_FORM_STATUS_SUCCESS,
   SAVE_CREATION_FORM_DATA,
 } from './types';
-import { CallAPIService } from '../../services/callAPIService';
+import { CreationAPIService } from '../../services/creationCallApi';
 
-export const saveRegistrationData = (name: string, surname: string, avatar: string) => {
+export const saveCreationData = (name: string, surname: string) => {
   return {
     type: SAVE_CREATION_FORM_DATA,
     payload: {
       name,
       surname,
-      avatar,
     },
   };
 };
 
-export const validateRegistrationData = (items: any) => (dispatch: any) => {
+export const validateCreationData = (items: any) => (dispatch: any) => {
   dispatch({ type: CREATION_FORM_STATUS_REQUEST });
 
-  new CallAPIService()
+  new CreationAPIService()
     .callServerValidation(items)
     .then(data => {
       dispatch({ type: CREATION_FORM_STATUS_SUCCESS, payload: data });

@@ -4,6 +4,7 @@ import { Text, View, TextInput, FlatList, TouchableOpacity, Image } from 'react-
 import styles from './ChatsScreen.style';
 import { NavigationState, NavigationScreenProp } from 'react-navigation';
 import useContacts from '../ContactsScreen/useContacts';
+import useChatScreen from '../ChatScreen/useChatScreen';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
@@ -44,7 +45,7 @@ const ChatsScreen = ({ navigation }: Props) => {
                 </View>
                 <View style={styles.nameView}>
                   <Text style={styles.nameText}>{`${item.name.first} ${item.name.last}`}</Text>
-                  <Text style={styles.messageText}>{item.login.md5}</Text>
+                  <Text style={styles.messageText}>{}</Text>
                 </View>
               </View>
             </TouchableOpacity>

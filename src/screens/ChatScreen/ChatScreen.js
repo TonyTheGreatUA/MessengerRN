@@ -1,8 +1,9 @@
 //@flow
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import { NavigationState, NavigationScreenProp } from 'react-navigation';
 import styles from './ChatScreen.style';
+import useChatScreen from './useChatScreen';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
@@ -13,7 +14,9 @@ const ChatScreen = ({ navigation }: Props) => {
   const surname = navigation.getParam('surname');
   const image = navigation.getParam('image');
   const online = navigation.getParam('age');
-  console.log(online);
+
+  const { messageData, handleTextInput, onAddMessage, textInput, userFirstName } = useChatScreen();
+
   return (
     <View style={styles.container}>
       <View style={styles.userCard}>
@@ -27,11 +30,38 @@ const ChatScreen = ({ navigation }: Props) => {
       </View>
       <View style={styles.separator} />
 
+      <View style={styles.messageView}>
+        <FlatList
+          data={messageData}
+          renderItem={({ item }) => (
+            <>
+              {item.name === userFirstName ? (
+                <View style={styles.ymessageText}>
+                  <Text style={styles.senderName}>{userFirstName}</Text>
+                  <Text>{item.userMessage}</Text>
+                </View>
+              ) : (
+                <View style={styles.messageText}>
+                  <Text style={styles.senderName}>{name}</Text>
+                  <Text>{item.body}</Text>
+                </View>
+              )}
+            </>
+          )}
+          keyExtractor={(item, id) => `${id}`}
+        />
+      </View>
+
       <View style={styles.lowerBlock}>
         <View style={styles.separator} />
         <View style={styles.sendMessage}>
-          <TextInput style={styles.search} placeholder={'Write a message...'} />
-          <TouchableOpacity style={styles.send}>
+          <TextInput
+            style={styles.search}
+            onChangeText={handleTextInput('textInput')}
+            placeholder={'Write a message...'}
+            value={textInput}
+          />
+          <TouchableOpacity onPress={onAddMessage} style={styles.send}>
             <Image style={styles.sendButton} source={require('../../../assets/send.png')} />
           </TouchableOpacity>
         </View>

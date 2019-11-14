@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
-const useContacts = () => {
+const useContacts = (messageData: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -17,8 +17,8 @@ const useContacts = () => {
         setFilteredData(res.results);
         setIsLoading(false);
       });
-  }, []);
-
+  }, [messageData]);
+  const addMessages = () => {};
   useEffect(() => {
     const newData: any = dataSource.filter(
       obj =>
