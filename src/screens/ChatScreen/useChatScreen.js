@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useCallback } from 'react';
 import { storeUserData } from '../../stores/userDataInfo/actions';
@@ -87,7 +88,6 @@ const useChatScreen = (email: string) => {
     userFirstName,
     currentData,
     opacity,
-    setOpacity,
     cancelPosition,
     inputLength,
   };

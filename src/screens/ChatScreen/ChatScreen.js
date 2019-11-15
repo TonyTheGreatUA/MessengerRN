@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 //@flow
 import React from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity, FlatList, Animated } from 'react-native';
@@ -26,7 +27,6 @@ const ChatScreen = (props: Props) => {
     userFirstName,
     currentData,
     opacity,
-    setOpacity,
     cancelPosition,
     onInputBlur,
     onInputFocus,
