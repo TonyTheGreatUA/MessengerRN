@@ -18,7 +18,7 @@ type Props = {
 };
 
 const ContactScreen = ({ navigation }: Props) => {
-  const { isLoading, searchFilterFunction, filteredData, userData } = useContacts();
+  const { isLoading, searchFilterFunction, userData } = useContacts();
 
   const openChatPage = item => {
     return navigation.navigate('ChatScreen', {

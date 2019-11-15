@@ -10,7 +10,7 @@ type Props = {
 };
 
 const ChatsScreen = (props: Props) => {
-  const { filteredData, searchFilterFunction, userData } = useContacts();
+  const { searchFilterFunction, userData } = useContacts();
 
   const openChatPage = item => {
     return props.navigation.navigate('ChatScreen', {

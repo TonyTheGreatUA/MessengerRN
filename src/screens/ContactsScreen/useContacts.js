@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 //@flow
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +11,6 @@ const userMessages = [
 
 const useContacts = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
   const dispatch = useDispatch();
@@ -33,20 +32,19 @@ const useContacts = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const newData: any = dataSource.filter(
+    const newData: any = userData.filter(
       obj =>
         obj.name.first.toLowerCase().includes(searchInput.toLowerCase()) ||
         obj.name.last.toLowerCase().includes(searchInput.toLowerCase()),
     );
     dispatch(storeUserData(newData));
-    setFilteredData(newData);
-  }, [dataSource, dispatch, searchInput]);
+  }, [dispatch, searchInput]);
 
   const searchFilterFunction = useCallback(() => {
     return (val: string) => setSearchInput(val);
   }, []);
 
-  return { dataSource, isLoading, searchFilterFunction, filteredData, userData };
+  return { isLoading, searchFilterFunction, userData };
 };
 
 export default useContacts;
