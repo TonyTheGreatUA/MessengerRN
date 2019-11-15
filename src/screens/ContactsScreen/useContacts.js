@@ -1,6 +1,6 @@
 //@flow
 import { useState, useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { storeUserData } from '../../stores/userDataInfo/actions';
 const userMessages = [
   { message: 'Hey there!' },
@@ -16,17 +16,17 @@ const useContacts = () => {
 
   const dispatch = useDispatch();
 
+  const userData = useSelector(state => state.userDataInfo.userData);
+
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://randomuser.me/api/?results=50&inc=name,picture,dob,login')
+    fetch('https://randomuser.me/api/?results=50&inc=name,picture,dob,login,email')
       .then(res => res.json())
       .then(res => {
         res = res.results.map(item => {
           item.messages = userMessages;
           return item;
         });
-        setDataSource(res);
-        setFilteredData(res);
         setIsLoading(false);
         dispatch(storeUserData(res));
       });
@@ -46,7 +46,7 @@ const useContacts = () => {
     return (val: string) => setSearchInput(val);
   }, []);
 
-  return { dataSource, isLoading, searchFilterFunction, filteredData };
+  return { dataSource, isLoading, searchFilterFunction, filteredData, userData };
 };
 
 export default useContacts;

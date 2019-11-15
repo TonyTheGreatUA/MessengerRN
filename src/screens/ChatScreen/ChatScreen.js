@@ -9,17 +9,18 @@ type Props = {
   navigation: NavigationScreenProp<NavigationState>,
 };
 
-const ChatScreen = ({ navigation }: Props) => {
-  const name = navigation.getParam('name');
-  const surname = navigation.getParam('surname');
-  const image = navigation.getParam('image');
-  const online = navigation.getParam('age');
-  const dialogue = navigation.getParam('dialogue');
+const ChatScreen = (props: Props) => {
+  const { params } = props.navigation.state;
+  const name = params.name;
+  const surname = params.surname;
+  const image = params.image;
+  const online = params.age;
+  const email = params.email;
 
-  const { messageData, handleTextInput, onAddMessage, textInput, userFirstName } = useChatScreen(
-    dialogue,
+  const { handleTextInput, onAddMessage, textInput, userFirstName, currentData } = useChatScreen(
+    email,
   );
-  console.log(messageData);
+
   return (
     <View style={styles.container}>
       <View style={styles.userCard}>
@@ -35,7 +36,7 @@ const ChatScreen = ({ navigation }: Props) => {
 
       <View style={styles.messageView}>
         <FlatList
-          data={messageData}
+          data={currentData.messages}
           renderItem={({ item }) => (
             <>
               {item.name === userFirstName ? (

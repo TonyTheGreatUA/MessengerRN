@@ -18,15 +18,16 @@ type Props = {
 };
 
 const ContactScreen = ({ navigation }: Props) => {
-  const { isLoading, searchFilterFunction, filteredData } = useContacts();
+  const { isLoading, searchFilterFunction, filteredData, userData } = useContacts();
 
-  const openChatPage = user => {
+  const openChatPage = item => {
     return navigation.navigate('ChatScreen', {
-      name: user.name.first,
-      surname: user.name.last,
-      image: user.picture.thumbnail,
-      age: user.dob.age,
-      dialogue: user.messages,
+      name: item.name.first,
+      surname: item.name.last,
+      image: item.picture.large,
+      age: item.dob.age,
+      dialogue: item.messages,
+      email: item.email,
     });
   };
 
@@ -46,7 +47,7 @@ const ContactScreen = ({ navigation }: Props) => {
         onChangeText={searchFilterFunction()}
       />
       <FlatList
-        data={filteredData}
+        data={userData}
         style={styles.container}
         windowSize={15}
         renderItem={({ item }) => (
@@ -58,10 +59,12 @@ const ContactScreen = ({ navigation }: Props) => {
             >
               <View style={styles.userCard}>
                 <View style={styles.photoView}>
-                  <Image style={styles.userPhoto} source={{ uri: item.picture.thumbnail }} />
+                  <Image style={styles.userPhoto} source={{ uri: item.picture.large }} />
                 </View>
                 <View style={styles.nameView}>
-                  <Text style={styles.nameText}>{`${item.name.first} ${item.name.last}`}</Text>
+                  <Text style={styles.nameText}>
+                    {item.name.first} {item.name.last}
+                  </Text>
                   <Text style={styles.onlineStatus}>
                     {item.dob.age > 30 ? 'online' : 'offline'}
                   </Text>

@@ -9,18 +9,20 @@ type Props = {
   navigation: NavigationScreenProp<NavigationState>,
 };
 
-const ChatsScreen = ({ navigation }: Props) => {
-  const { filteredData, searchFilterFunction } = useContacts();
+const ChatsScreen = (props: Props) => {
+  const { filteredData, searchFilterFunction, userData } = useContacts();
 
-  const openChatPage = user => {
-    return navigation.navigate('ChatScreen', {
-      name: user.name.first,
-      surname: user.name.last,
-      image: user.picture.thumbnail,
-      age: user.dob.age,
-      dialogue: user.messages,
+  const openChatPage = item => {
+    return props.navigation.navigate('ChatScreen', {
+      name: item.name.first,
+      surname: item.name.last,
+      image: item.picture.thumbnail,
+      age: item.dob.age,
+      dialogue: item.messages,
+      email: item.email,
     });
   };
+
   return (
     <>
       <TextInput
@@ -29,7 +31,7 @@ const ChatsScreen = ({ navigation }: Props) => {
         onChangeText={searchFilterFunction()}
       />
       <FlatList
-        data={filteredData}
+        data={userData}
         style={styles.container}
         windowSize={15}
         renderItem={({ item }) => (
