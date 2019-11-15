@@ -3,11 +3,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeUserData } from '../../stores/userDataInfo/actions';
-const userMessages = [
-  { message: 'Hey there!' },
-  { message: 'How is your life?' },
-  { message: 'I am fine' },
-];
 
 const useContacts = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,6 +11,15 @@ const useContacts = () => {
   const dispatch = useDispatch();
 
   const userData = useSelector(state => state.userDataInfo.userData);
+  const userFirstName = useSelector(state => state.creationFormInfo.name);
+
+  const userMessages = [
+    { message: 'Hey there!' },
+    { name: userFirstName, userMessage: 'Hello!' },
+    { message: 'How is your life?' },
+    { name: userFirstName, userMessage: 'Everything is nice! How about you?' },
+    { message: 'I am fine, thank you.' },
+  ];
 
   useEffect(() => {
     setIsLoading(true);
