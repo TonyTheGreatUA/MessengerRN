@@ -18,6 +18,7 @@ const ChatsScreen = ({ navigation }: Props) => {
       surname: user.name.last,
       image: user.picture.thumbnail,
       age: user.dob.age,
+      dialogue: user.messages,
     });
   };
   return (
@@ -44,7 +45,9 @@ const ChatsScreen = ({ navigation }: Props) => {
                 </View>
                 <View style={styles.nameView}>
                   <Text style={styles.nameText}>{`${item.name.first} ${item.name.last}`}</Text>
-                  <Text style={styles.messageText}>{}</Text>
+                  <Text style={styles.messageText}>
+                    {item.messages[item.messages.length - 1].message}
+                  </Text>
                 </View>
               </View>
             </TouchableOpacity>

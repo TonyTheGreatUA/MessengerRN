@@ -14,9 +14,12 @@ const ChatScreen = ({ navigation }: Props) => {
   const surname = navigation.getParam('surname');
   const image = navigation.getParam('image');
   const online = navigation.getParam('age');
+  const dialogue = navigation.getParam('dialogue');
 
-  const { messageData, handleTextInput, onAddMessage, textInput, userFirstName } = useChatScreen();
-
+  const { messageData, handleTextInput, onAddMessage, textInput, userFirstName } = useChatScreen(
+    dialogue,
+  );
+  console.log(messageData);
   return (
     <View style={styles.container}>
       <View style={styles.userCard}>
@@ -43,7 +46,7 @@ const ChatScreen = ({ navigation }: Props) => {
               ) : (
                 <View style={styles.messageText}>
                   <Text style={styles.senderName}>{name}</Text>
-                  <Text>{item.body}</Text>
+                  <Text>{item.message}</Text>
                 </View>
               )}
             </>
@@ -57,7 +60,7 @@ const ChatScreen = ({ navigation }: Props) => {
         <View style={styles.sendMessage}>
           <TextInput
             style={styles.search}
-            onChangeText={handleTextInput('textInput')}
+            onChangeText={handleTextInput()}
             placeholder={'Write a message...'}
             value={textInput}
           />

@@ -32,7 +32,11 @@ const RegistrationScreen = ({ navigation }: Props) => {
         keyboardType="phone-pad"
         onChangeText={handleTextChanged('phoneNumber')}
       />
-      <TouchableOpacity disabled={isError} style={styles.mainButton} onPress={onButtonClick}>
+      <TouchableOpacity
+        disabled={inputData.phoneNumber.length < 9}
+        style={styles.mainButton}
+        onPress={onButtonClick}
+      >
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>

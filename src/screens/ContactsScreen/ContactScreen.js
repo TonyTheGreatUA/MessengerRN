@@ -1,5 +1,4 @@
 //@flow
-
 import React from 'react';
 import {
   Text,
@@ -27,6 +26,7 @@ const ContactScreen = ({ navigation }: Props) => {
       surname: user.name.last,
       image: user.picture.thumbnail,
       age: user.dob.age,
+      dialogue: user.messages,
     });
   };
 
