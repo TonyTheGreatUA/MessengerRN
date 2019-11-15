@@ -1,9 +1,11 @@
 //@flow
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, FlatList, Animated } from 'react-native';
 import { NavigationState, NavigationScreenProp } from 'react-navigation';
 import styles from './ChatScreen.style';
 import useChatScreen from './useChatScreen';
+
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
@@ -17,9 +19,20 @@ const ChatScreen = (props: Props) => {
   const online = params.age;
   const email = params.email;
 
-  const { handleTextInput, onAddMessage, textInput, userFirstName, currentData } = useChatScreen(
-    email,
-  );
+  const {
+    handleTextInput,
+    onAddMessage,
+    textInput,
+    userFirstName,
+    currentData,
+    opacity,
+    setOpacity,
+    cancelPosition,
+    onInputBlur,
+    onInputFocus,
+    inputLength,
+    searchBarFocused,
+  } = useChatScreen(email);
 
   return (
     <View style={styles.container}>
@@ -58,17 +71,37 @@ const ChatScreen = (props: Props) => {
 
       <View style={styles.lowerBlock}>
         <View style={styles.separator} />
-        <View style={styles.sendMessage}>
+        <Animated.View
+          style={[
+            styles.sendMessage,
+            {
+              width: inputLength,
+              position: 'absolute',
+              left: 40,
+              alignSelf: 'center',
+            },
+            searchBarFocused === true ? undefined : { justifyContent: 'center' },
+          ]}
+        >
           <TextInput
             style={styles.search}
             onChangeText={handleTextInput()}
             placeholder={'Write a message...'}
             value={textInput}
+            onBlur={onInputBlur}
+            onFocus={onInputFocus}
+            multiline
           />
-          <TouchableOpacity onPress={onAddMessage} style={styles.send}>
-            <Image style={styles.sendButton} source={require('../../../assets/send.png')} />
-          </TouchableOpacity>
-        </View>
+          <AnimatedTouchable
+            onPress={onAddMessage}
+            style={[styles.send, { opacity: opacity }, { right: cancelPosition }]}
+          >
+            <Animated.Image
+              style={[styles.sendButton, { opacity: opacity }]}
+              source={require('../../../assets/send.png')}
+            />
+          </AnimatedTouchable>
+        </Animated.View>
       </View>
     </View>
   );

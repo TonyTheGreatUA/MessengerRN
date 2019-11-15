@@ -1,8 +1,7 @@
-//@flow
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useCallback } from 'react';
 import { storeUserData } from '../../stores/userDataInfo/actions';
-
+import { Animated, Dimensions } from 'react-native';
 const msgAnswer = [
   { message: 'Cool' },
   { message: 'Nice' },
@@ -10,11 +9,38 @@ const msgAnswer = [
   { message: 'Something new' },
 ];
 
+const { width } = Dimensions.get('window');
+const PADDING = 16;
+const SEARCH_FULL_WIDTH = width - PADDING * 2;
+const SEARCH_SHRINK_WIDTH = width - PADDING - 90;
+
 const useChatScreen = (email: string) => {
   const [textInput, setTextInput] = useState('');
   const userFirstName = useSelector(state => state.creationFormInfo.name);
   const dispatch = useDispatch();
   const messageData = useSelector(state => state.userDataInfo.userData);
+
+  //Animation states
+  const [inputLength, setInputLength] = useState(new Animated.Value(SEARCH_FULL_WIDTH));
+  const [cancelPosition, setCancelPosition] = useState(new Animated.Value(0));
+  const [opacity, setOpacity] = useState(new Animated.Value(0));
+  const [searchBarFocused, setSearchBarFocused] = useState(false);
+
+  const onInputFocus = () => {
+    Animated.parallel([
+      Animated.timing(inputLength, { toValue: SEARCH_SHRINK_WIDTH, duration: 250 }),
+      Animated.timing(cancelPosition, { toValue: 16, duration: 400 }),
+      Animated.timing(opacity, { toValue: 1, duration: 250 }),
+    ]).start();
+  };
+
+  const onInputBlur = () => {
+    Animated.parallel([
+      Animated.timing(inputLength, { toValue: SEARCH_FULL_WIDTH, duration: 250 }),
+      Animated.timing(cancelPosition, { toValue: 0, duration: 250 }),
+      Animated.timing(opacity, { toValue: 0, duration: 250 }),
+    ]).start();
+  };
 
   const handleTextInput = useCallback(() => {
     return (val: string) => setTextInput(val);
@@ -50,7 +76,21 @@ const useChatScreen = (email: string) => {
     dispatch(storeUserData(newMessages));
     setTextInput('');
   };
-  return { messageData, handleTextInput, onAddMessage, textInput, userFirstName, currentData };
+  return {
+    searchBarFocused,
+    onInputBlur,
+    onInputFocus,
+    messageData,
+    handleTextInput,
+    onAddMessage,
+    textInput,
+    userFirstName,
+    currentData,
+    opacity,
+    setOpacity,
+    cancelPosition,
+    inputLength,
+  };
 };
 
 export default useChatScreen;
