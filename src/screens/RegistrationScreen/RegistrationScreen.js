@@ -33,7 +33,7 @@ const RegistrationScreen = ({ navigation }: Props) => {
         onChangeText={handleTextChanged('phoneNumber')}
       />
       <TouchableOpacity
-        disabled={inputData.phoneNumber.length < 9}
+        disabled={inputData.phoneNumber.length > 14 && inputData.phoneNumber.length < 9}
         style={styles.mainButton}
         onPress={onButtonClick}
       >

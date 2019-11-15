@@ -63,7 +63,11 @@ const CreateProfileScreen = ({ navigation }: Props) => {
           />
         </View>
       </View>
-      <TouchableOpacity disabled={isErrorC} onPress={onButtonClick} style={styles.mainButton}>
+      <TouchableOpacity
+        disabled={inputData.firstName.length < 2 && inputData.lastName.length < 2}
+        onPress={onButtonClick}
+        style={styles.mainButton}
+      >
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
