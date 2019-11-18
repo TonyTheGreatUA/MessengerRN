@@ -27,21 +27,21 @@ const useChatScreen = (email: string) => {
   const [opacity, setOpacity] = useState(new Animated.Value(0));
   const [searchBarFocused, setSearchBarFocused] = useState(false);
 
-  const onInputFocus = () => {
+  const onInputFocus = useCallback(() => {
     Animated.parallel([
       Animated.timing(inputLength, { toValue: SEARCH_SHRINK_WIDTH, duration: 250 }),
       Animated.timing(cancelPosition, { toValue: 16, duration: 400 }),
       Animated.timing(opacity, { toValue: 1, duration: 250 }),
     ]).start();
-  };
+  }, [cancelPosition, inputLength, opacity]);
 
-  const onInputBlur = () => {
+  const onInputBlur = useCallback(() => {
     Animated.parallel([
       Animated.timing(inputLength, { toValue: SEARCH_FULL_WIDTH, duration: 250 }),
       Animated.timing(cancelPosition, { toValue: 0, duration: 250 }),
       Animated.timing(opacity, { toValue: 0, duration: 250 }),
     ]).start();
-  };
+  }, [cancelPosition, inputLength, opacity]);
 
   const handleTextInput = useCallback(() => {
     return (val: string) => setTextInput(val);
@@ -49,7 +49,7 @@ const useChatScreen = (email: string) => {
 
   const currentData = messageData.filter(item => item.email === email)[0];
 
-  const onAddMessage = () => {
+  const onAddMessage = useCallback(() => {
     let newMessages = messageData.map(item => {
       return item.email === email
         ? {
@@ -76,7 +76,8 @@ const useChatScreen = (email: string) => {
     }, 2000);
     dispatch(storeUserData(newMessages));
     setTextInput('');
-  };
+  }, [dispatch, email, messageData, textInput, userFirstName]);
+
   return {
     searchBarFocused,
     onInputBlur,

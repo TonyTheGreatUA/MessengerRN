@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { saveCreationData } from '../../stores/creationFormInfo/actions';
 
 const useSettingsScreen = () => {
@@ -21,12 +21,12 @@ const useSettingsScreen = () => {
     return (val: string) => setUserInfo({ ...userInfo, [key]: val });
   };
 
-  const handleEditPressed = () => {
+  const handleEditPressed = useCallback(() => {
     setIsEditClicked(!isEditClicked);
     if (isEditClicked) {
       dispatch(saveCreationData(userFirstName, userLastName, userPhoneNumber));
     }
-  };
+  }, [dispatch, isEditClicked, userFirstName, userLastName, userPhoneNumber]);
 
   return {
     userPhoneNumber,
