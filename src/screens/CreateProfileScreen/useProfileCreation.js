@@ -9,6 +9,7 @@ const useProfileCreation = () => {
   const [inputData, setInputData] = useState({
     firstName: '',
     lastName: '',
+    phone: '',
   });
   const [avatar, setAvatar] = useState('');
   const [isPhotoAdded, setIsPhotoAdded] = useState(false);
@@ -32,7 +33,7 @@ const useProfileCreation = () => {
     return (val: string) => setInputData({ ...inputData, [name]: val });
   };
   const handleRegistration = () => {
-    dispatch(saveCreationData(inputData.firstName, inputData.lastName));
+    dispatch(saveCreationData(inputData.firstName, inputData.lastName, inputData.phone));
   };
 
   const handleSubmit = () => {

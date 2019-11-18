@@ -10,18 +10,21 @@ import {
 const defaultState = {
   name: '',
   surname: '',
+  phone: '',
 };
 
 export const creationFormInfoReducer = (
   state: {
     name: string,
     surname: string,
+    phone: string,
   } = defaultState,
   action: {
     type: string,
     payload: {
       name: string,
       surname: string,
+      phone: string,
     },
   },
 ) => {

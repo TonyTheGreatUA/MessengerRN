@@ -17,18 +17,22 @@ const useSettingsScreen = () => {
 
   const dispatch = useDispatch();
 
-  const handleTextInput = (key: string) => {
-    return (val: string) => setUserInfo({ ...userInfo, [key]: val });
-  };
+  const handleTextInput = useCallback(
+    (key: string) => {
+      return (val: string) => setUserInfo({ ...userInfo, [key]: val });
+    },
+    [userInfo],
+  );
 
   const handleEditPressed = useCallback(() => {
     setIsEditClicked(!isEditClicked);
     if (isEditClicked) {
-      dispatch(saveCreationData(userFirstName, userLastName, userPhoneNumber));
+      dispatch(saveCreationData(userInfo.name, userInfo.surname, userInfo.phone));
     }
-  }, [dispatch, isEditClicked, userFirstName, userLastName, userPhoneNumber]);
+  }, [dispatch, isEditClicked, userInfo.name, userInfo.phone, userInfo.surname]);
 
   return {
+    userInfo,
     userPhoneNumber,
     userFirstName,
     userLastName,

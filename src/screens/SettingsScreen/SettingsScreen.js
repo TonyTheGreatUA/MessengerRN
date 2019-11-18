@@ -17,6 +17,7 @@ const SettingsScreen = () => {
     isEditClicked,
     handleEditPressed,
     handleTextInput,
+    userInfo,
   } = useSettingsScreen();
   return (
     <>
@@ -25,14 +26,14 @@ const SettingsScreen = () => {
           <Image style={styles.userPhoto} source={{ uri: user.image }} />
         </View>
         <View style={styles.nameView}>
-          <Text style={styles.nameText}>{`${userFirstName} ${userLastName}`}</Text>
+          <Text style={styles.nameText}>{`${userInfo.name} ${userInfo.surname}`}</Text>
           <Text style={styles.descrInfo}>
-            {isEditClicked ? null : <Text style={styles.descrInfo}>{userPhoneNumber}</Text>}
+            {isEditClicked ? null : <Text style={styles.descrInfo}>{userInfo.phone}</Text>}
           </Text>
           {isEditClicked ? (
             <TextInput
               style={styles.textInput}
-              value={userPhoneNumber}
+              value={userInfo.phone}
               onChangeText={handleTextInput('phone')}
             />
           ) : null}

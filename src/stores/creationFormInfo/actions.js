@@ -8,12 +8,13 @@ import {
 } from './types';
 import { CreationAPIService } from '../../services/creationCallApi';
 
-export const saveCreationData = (name: string, surname: string) => {
+export const saveCreationData = (name: string, surname: string, phone: string) => {
   return {
     type: SAVE_CREATION_FORM_DATA,
     payload: {
       name,
       surname,
+      phone,
     },
   };
 };
