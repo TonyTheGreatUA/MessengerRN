@@ -17,10 +17,8 @@ const useSettingsScreen = () => {
 
   const dispatch = useDispatch();
 
-  const userData = { userFirstName, userLastName, userPhoneNumber };
-
   const handleTextInput = (key: string) => {
-    return (val: string) => setUserInfo({ ...userData, [key]: val });
+    return (val: string) => setUserInfo({ ...userInfo, [key]: val });
   };
 
   const handleEditPressed = () => {
