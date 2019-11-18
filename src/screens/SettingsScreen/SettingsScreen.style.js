@@ -28,4 +28,21 @@ export default StyleSheet.create({
   descrInfo: {
     color: '#6982c2',
   },
+  mainButton: {
+    backgroundColor: '#6982c2',
+    borderRadius: 8,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 40,
+    paddingRight: 40,
+    textAlign: 'center',
+    shadowColor: '#6982c2',
+    shadowOpacity: 0.6,
+    shadowRadius: 8,
+    shadowOffset: { width: 2, height: 2 },
+  },
+  buttonText: {
+    fontSize: 26,
+    color: '#fff',
+  },
 });

@@ -1,6 +1,6 @@
 //@flow
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import styles from './SettingsScreen.style';
 import useSettingsScreen from './useSettingsScreen';
 
@@ -10,7 +10,14 @@ const user = {
 };
 
 const SettingsScreen = () => {
-  const { userPhoneNumber, userFirstName, userLastName } = useSettingsScreen();
+  const {
+    userPhoneNumber,
+    userFirstName,
+    userLastName,
+    isEditClicked,
+    handleEditPressed,
+    handleTextInput,
+  } = useSettingsScreen();
   return (
     <>
       <View style={styles.profileCard}>
@@ -19,10 +26,22 @@ const SettingsScreen = () => {
         </View>
         <View style={styles.nameView}>
           <Text style={styles.nameText}>{`${userFirstName} ${userLastName}`}</Text>
-          <Text style={styles.descrInfo}>{userPhoneNumber}</Text>
+          <Text style={styles.descrInfo}>
+            {isEditClicked ? null : <Text style={styles.descrInfo}>{userPhoneNumber}</Text>}
+          </Text>
+          {isEditClicked ? (
+            <TextInput
+              style={styles.textInput}
+              value={userPhoneNumber}
+              onChangeText={handleTextInput('phone')}
+            />
+          ) : null}
           <Text
             style={styles.descrInfo}
           >{`@${userFirstName.toLowerCase()}${userLastName.toLowerCase()}`}</Text>
+          <TouchableOpacity style={styles.mainButton} onPress={handleEditPressed}>
+            <Text style={styles.buttonText}>{isEditClicked ? 'Save' : 'Edit'}</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </>
