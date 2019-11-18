@@ -56,7 +56,7 @@ const ChatsScreen = (props: Props) => {
             <View style={styles.separator} />
           </>
         )}
-        keyExtractor={(item, id) => `${id}`}
+        keyExtractor={(item, email) => `${email}`}
       />
     </>
   );

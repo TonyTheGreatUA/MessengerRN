@@ -74,7 +74,7 @@ const ContactScreen = ({ navigation }: Props) => {
             <View style={styles.separator} />
           </>
         )}
-        keyExtractor={(item, id) => `${id}`}
+        keyExtractor={(item, email) => `${email}`}
       />
     </>
   );
