@@ -11,7 +11,6 @@ const user = {
 
 const SettingsScreen = () => {
   const {
-    userPhoneNumber,
     userFirstName,
     userLastName,
     isEditClicked,

@@ -33,7 +33,6 @@ const useSettingsScreen = () => {
 
   return {
     userInfo,
-    userPhoneNumber,
     userFirstName,
     userLastName,
     handleTextInput,
