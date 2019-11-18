@@ -53,7 +53,7 @@ const ContactScreen = ({ navigation }: Props) => {
       <FlatList
         data={userData}
         style={styles.container}
-        windowSize={15}
+        windowSize={20}
         renderItem={({ item }) => (
           <>
             <TouchableOpacity onPress={openChat(item)}>
