@@ -31,6 +31,10 @@ const ContactScreen = ({ navigation }: Props) => {
     });
   };
 
+  const openChat = item => {
+    return () => openChatPage(item);
+  };
+
   if (isLoading) {
     return (
       <View style={styles.loaderView}>
@@ -52,11 +56,7 @@ const ContactScreen = ({ navigation }: Props) => {
         windowSize={15}
         renderItem={({ item }) => (
           <>
-            <TouchableOpacity
-              onPress={() => {
-                openChatPage(item);
-              }}
-            >
+            <TouchableOpacity onPress={openChat(item)}>
               <View style={styles.userCard}>
                 <View style={styles.photoView}>
                   <Image style={styles.userPhoto} source={{ uri: item.picture.large }} />

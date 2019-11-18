@@ -23,6 +23,10 @@ const ChatsScreen = (props: Props) => {
     });
   };
 
+  const openChat = item => {
+    return () => openChatPage(item);
+  };
+
   return (
     <>
       <TextInput
@@ -36,11 +40,7 @@ const ChatsScreen = (props: Props) => {
         windowSize={15}
         renderItem={({ item }) => (
           <>
-            <TouchableOpacity
-              onPress={() => {
-                openChatPage(item);
-              }}
-            >
+            <TouchableOpacity onPress={openChat(item)}>
               <View style={styles.userCard}>
                 <View style={styles.photoView}>
                   <Image style={styles.userPhoto} source={{ uri: item.picture.thumbnail }} />
