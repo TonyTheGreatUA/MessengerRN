@@ -21,7 +21,6 @@ const useChatScreen = (email: string) => {
   const dispatch = useDispatch();
   const messageData = useSelector(state => state.userDataInfo.userData);
 
-  //Animation states
   const [inputLength, setInputLength] = useState(new Animated.Value(SEARCH_FULL_WIDTH));
   const [cancelPosition, setCancelPosition] = useState(new Animated.Value(0));
   const [opacity, setOpacity] = useState(new Animated.Value(0));
